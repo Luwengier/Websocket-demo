@@ -1,0 +1,23 @@
+<script src="https://cdn.socket.io/4.3.2/socket.io.min.js"
+  integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous"></script>
+<script>
+  const socket = io('ws://localhost:8000')
+  // let ws = new WebSocket('ws://localhost:8000')
+  console.log(socket)
+
+  // ws.onopen = (event) => {
+  //   ws.send('I am so excited I am connected! It is like Christmas!')
+  // }
+  socket.on('connect', data => {
+    socket.emit('message', { data: 'I am so excited I am connected! It is like Christmas!' })
+
+    socket.on('welcome', (message) => {
+      console.log(message)
+    })
+  })
+
+  // ws.onmessage = (event) => {
+  //   console.log(event)
+  // }
+
+</script>
